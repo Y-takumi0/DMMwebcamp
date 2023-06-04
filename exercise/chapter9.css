@@ -23,12 +23,16 @@ main {
   position: relative;
 }
 
+.box:last-child {
+  margin-right: 0;
+}
+
 .box-step {
   position: absolute;
   top: 0;
   left: 0;
   background-color: #ff9a4b;
-  color: #fff;
+  color: white;
 }
 
 .box-img1 {
