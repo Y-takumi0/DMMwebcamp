@@ -26,6 +26,7 @@ body {
   font-size: 13px;
   line-height: 18px;
   margin: 33px;
+  display: block;
 }
 
 
@@ -52,7 +53,7 @@ subject {
   display: block;
 }
 
-table {
+.table {
     display: table;
     border-collapse: separate;
     box-sizing: border-box;
@@ -67,12 +68,12 @@ label {
     border-color: inherit;
 }
 
-ta {
+.text-head {
     display: table-row;
     vertical-align: inherit;
     border-color: inherit;
 }
 
-tb {
+th {
     padding-bottom: 5px;
 }
