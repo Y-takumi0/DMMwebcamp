@@ -1,44 +1,38 @@
 
 <h1>Books</h1>
 
-  <div class="table">
+    <table>
 
-    <label>
-
-      <div class="text-head">
-
-        <th>Title</th>
-        <th>body</th>
-        <th colspan="3"></th>
-
+      <div class="book-title">
+        <tr>
+          <span>Title</span>
+          <span>Body</span>
+        </tr>
       </div>
 
-    </label>
-
-    <div class="book-list">
+      <tbody>
       <% @books.each do |book| %>
-
-        <span class="book-body">
-          <%= book.title %>
-        </span>
-
-        <span class="book-body">
-          <%= book.body %>
-        </span>
-
-         <bb class="nav-list-item">
-          <%= link_to "Show", book_path(book.id) %>
-        </bb>
-        <bb class="nav-list-item">
-          <%= link_to "Edit", "/books/#{book.id}/edit" %>
-        </bb>
-        <bb class="nav-list-item">
-          <%= link_to "Destroy", "/books/#{book.id}" %>
-        </bb>
+        <div class="book-list">
+          <span >
+            <%= book.title %>
+          </span>
+          <span>
+            <%= book.body %>
+          </span>
+          <span>
+            <%= link_to "Show", book_path(book.id)%>
+          </span>
+          <span>
+            <%= link_to "Edit", edit_book_path(book.id) %>
+          </span>
+          <span>
+            <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
+          </span>
+        </div>
       <% end %>
-    </div>
+      </tbody>
+    </table>
 
-  </div>
 
 
 
@@ -47,7 +41,6 @@
 <%= form_with model: @book do |f| %>
 
 <div class="form">
-
 
   <div class="field">
     <subject>Title</subject>

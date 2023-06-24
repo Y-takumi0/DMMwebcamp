@@ -1,16 +1,21 @@
+<div class="succes">
+  <%= flash[:notice] %>
+</div>
+
 <p>
-Title:
+<strong>Title:</strong>
 <%= @book.title %>
 </p>
 
 <p>
-Body:
+<strong>Body:</strong>
 <%= @book.body %>
 </p>
 
-<bb class="nav-list-item">
+<span class="nav-list-item">
   <%= link_to "Edit", edit_book_path(@book.id) %>
-</bb>
-<bb class="nav-list-item">
+</span>
+ |
+<span class="nav-list-item">
   <%= link_to "Back", "/books" %>
-</bb>
+</span>
