@@ -13,19 +13,19 @@
 <%= form_with model: @book, url:book_path(@book.id), method: :patch do |f| %>
 
   <div class="edit-list">
-  <subject>Title</subject>
-  <%= f.text_field :title %>
+    <subject>Title</subject>
+    <%= f.text_field :title %>
   </div>
 
   <div class="edit-list">
-  <subject>Body</subject>
-  <%= f.text_area :body %>
+    <subject>Body</subject>
+    <%= f.text_area :body %>
   </div>
 
   <div class="edit-list">
-  <ul>
-  <%= f.submit 'Update Book' %>
-  </ul>
+    <ul>
+      <%= f.submit 'Update Book' %>
+    </ul>
   </div>
 
 <% end %>
@@ -35,5 +35,5 @@
 </span>
 |
 <span class="nav-list-item">
-  <%= link_to "Back", "/books" %>
+  <%= link_to "Back",  books_path %>
 </span>
