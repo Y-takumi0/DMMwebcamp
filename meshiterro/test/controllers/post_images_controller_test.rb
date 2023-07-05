@@ -1,18 +1,18 @@
 require "test_helper"
 
-class PostimageControllerTest < ActionDispatch::IntegrationTest
+class PostImagesControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
-    get postimage_new_url
+    get post_images_new_url
     assert_response :success
   end
 
   test "should get index" do
-    get postimage_index_url
+    get post_images_index_url
     assert_response :success
   end
 
   test "should get show" do
-    get postimage_show_url
+    get post_images_show_url
     assert_response :success
   end
 end
