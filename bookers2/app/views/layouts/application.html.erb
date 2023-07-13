@@ -2,29 +2,59 @@
 <html>
   <head>
     <title>Bookers2</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <script src="https://kit.fontawesome.com/e9741e9872.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
+      <span>Bookers</span>
       <% if user_signed_in? %>
         <li>
+          <i class="fa-solid fa-house"></i>
+          <%= link_to "Home", root_path %>
+        </li>
+        <li>
+          <i class="fa-solid fa-user-plus"></i>
+          <%= link_to "User", user_path(current_user.id) %>
+        </li>
+        <li>
+          <i class="fa-solid fa-book-open"></i>
+          <%= link_to "Books", books_path %>
+        </li>
+        <li>
+          <i class="fa-solid fa-right-from-bracket"></i>
           <%= link_to "Log out", destroy_user_session_path, method: :delete %>
         </li>
       <% else %>
         <li>
+          <i class="fa-solid fa-house"></i>
+          <%= link_to "Home", root_path %>
+        </li>
+        <li>
+          <i class="fa-solid fa-link"></i>
+          <%= link_to "About", home_about_path %>
+        </li>
+        <li>
+          <i class="fa-solid fa-user-plus"></i>
           <%= link_to "Sign up", new_user_registration_path %>
         </li>
         <li>
+          <i class="fa-solid fa-right-to-bracket"></i>
           <%= link_to "Log in", new_user_session_path %>
         </li>
       <% end %>
     </header>
     <%= yield %>
+    <footer>
+      <div class="low">
+        <p>CopyRight Infratop.inc</p>
+      </div>
+    </footer>
   </body>
 </html>

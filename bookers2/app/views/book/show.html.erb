@@ -1,0 +1,23 @@
+<div class="row">
+<%= render 'book/list', books: @books %>
+
+<% @books.each do |book| %>
+  <div class="col-md-8">
+    <h2>Book detail</h2>
+    <tbody>
+      <tr>
+        <td>
+          <%= image_tag book.user.get_profile_image(100,100) %>
+          <%= @book.user.name %>
+        </td>
+        <td>
+          <%= @book.title %>
+        </td>
+        <td>
+          <%= @book.body %>
+        </td>
+      </tr>
+    </tbody>
+  </div>
+<% end %>
+</div>
