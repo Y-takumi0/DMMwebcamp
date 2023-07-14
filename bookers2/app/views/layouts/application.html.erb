@@ -13,47 +13,80 @@
 
   <body>
     <header>
-      <span>Bookers</span>
-      <% if user_signed_in? %>
-        <li>
-          <i class="fa-solid fa-house"></i>
-          <%= link_to "Home", root_path %>
-        </li>
-        <li>
-          <i class="fa-solid fa-user-plus"></i>
-          <%= link_to "User", user_path(current_user.id) %>
-        </li>
-        <li>
-          <i class="fa-solid fa-book-open"></i>
-          <%= link_to "Books", books_path %>
-        </li>
-        <li>
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <i class="fa-solid fa-house"></i>
-          <%= link_to "Home", root_path %>
-        </li>
-        <li>
-          <i class="fa-solid fa-link"></i>
-          <%= link_to "About", home_about_path %>
-        </li>
-        <li>
-          <i class="fa-solid fa-user-plus"></i>
-          <%= link_to "Sign up", new_user_registration_path %>
-        </li>
-        <li>
-          <i class="fa-solid fa-right-to-bracket"></i>
-          <%= link_to "Log in", new_user_session_path %>
-        </li>
-      <% end %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <span>Bookers</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li>
+                <a class="nav-link text-light" href="/">
+                  <i class="fa-solid fa-house"></i>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a class="nav-link text-light" href="/users">
+                  <i class="fa-solid fa-users"></i>
+                  Users
+                </a>
+              </li>
+              <li>
+                <a class="nav-link text-light" href="/books">
+                  <i class="fa-solid fa-book-open"></i>
+                  Books
+                </a>
+              </li>
+              <li>
+                <a class="nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">
+                  <i class="fa-solid fa-right-from-bracket" ></i>
+                  Log out
+                </a>
+              </li>
+            <% else %>
+              <li>
+                <a class="nav-link text-light" href="/">
+                  <i class="fa-solid fa-house"></i>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a class="nav-link text-light" href="/about">
+                  <i class="fa-solid fa-link"></i>
+                  About
+                </a>
+              </li>
+              <li>
+                <a class="nav-link text-light" href="/users/sign_up">
+                  <i class="fa-solid fa-user-plus"></i>
+                  Sign up
+                </a>
+              </li>
+              <li>
+                <a class="nav-link text-light" href="/users/sign_in">
+                  <i class="fa-solid fa-right-to-bracket"></i>
+                  Log in
+                </a>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
     <%= yield %>
     <footer>
-      <div class="low">
-        <p>CopyRight Infratop.inc</p>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
       </div>
     </footer>
   </body>
