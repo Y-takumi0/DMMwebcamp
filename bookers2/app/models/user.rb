@@ -7,12 +7,15 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_one_attached :profile_image
 
+  validates :name, length: { in: 2..20 }, uniqueness: true
+  validates :introduction, length: { maximum: 50 }
+
   def get_profile_image(weight, height)
-    unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/no-image.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
-      profile_image
+  unless profile_image.attached?
+    file_path = Rails.root.join('app/assets/images/no-image.jpg')
+    profile_image.attach(io: File.open(file_path), filename: 'profile-image.jpg', content_type: 'image/jpeg')
+  end
+  profile_image.variant(resize_to_limit: [weight, height]).processed
   end
 
 end

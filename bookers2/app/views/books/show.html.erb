@@ -1,40 +1,42 @@
+<p>
+  <%= flash[:notice] %>
+</p>
 <div class="container">
   <div class="row">
+    <%= render "info", books: @books %>
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
       <table class="table">
-        <% form_with model: @books do |book| %>
         <tbody>
           <tr>
             <td>
-              <%= link_to user_path(current_user) do %>
-                <%= image_tag book.user.get_profile_image(100,100) %><br>
-                <%= book.user.name %>
+               <%= link_to user_path(@book.user.id) do %>
+                <%= image_tag @book.user.get_profile_image(100,100) %><br>
+                <%= @book.user.name %>
               <% end %>
             </td>
             <td>
-              <%= link_to book_path(book.id) do %>
-                <%= book.title %>
+              <%= link_to book_path(@book.id) do %>
+                <%= @book.title %>
               <% end %>
             </td>
             <td>
-              <%= book.body %>
+              <%= @book.body %>
             </td>
-            <% if book.user == current_user %>
+            <% if @book.user == current_user %>
             <td>
-              <%= link_to edit_book_path(book.id), class:"btn btn-sm btn-succes edit_book_path" do %>
+              <%= link_to edit_book_path(@book.id), class:"btn btn-sm btn-success edit_book_path" do %>
                 Edit
               <% end %>
             </td>
             <td>
-              <%= link_to books_path, method: :delete, class:"btn btn-sm btn-danger destroy_book_path", "data-confirm" => "本当に消しますか？" do %>
+              <%= link_to book_path(@book.id), class:"btn btn-sm btn-danger destroy_book_path", "data-confirm" => "本当に消しますか？", method: :delete do %>
                 Destroy
               <% end %>
             </td>
             <% end %>
           </tr>
         </tbody>
-        <% end %>
       </table>
     </div>
   </div>
