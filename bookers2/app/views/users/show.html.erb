@@ -4,7 +4,7 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <%= render "books/info", user: @user %>
-    <div class="col-md-8">
+    <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
       <table class="table table-hover table-inverse">
         <thead>
@@ -14,10 +14,10 @@
             <th>Opinion</th>
           </t>
         </thead>
-        <% @books.each do |book| %>
+        <% @book.each do |book| %>
         <tbody>
           <td>
-            <%= link_to user_path(@user.id) do %>
+            <%= link_to user_path(book.user.id) do %>
               <%= image_tag book.user.get_profile_image(100,100) %>
             <% end %>
           </td>
