@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2023_08_24_082331) do
     t.string "postcode", null: false
     t.string "address", null: false
     t.string "telephone", null: false
-    t.boolean "is_active", null: false
+    t.boolean "is_active", null: false, default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2023_08_24_082331) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
-    t.boolean "is_sale", null: false
+    t.boolean "is_sale", null: false, default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
