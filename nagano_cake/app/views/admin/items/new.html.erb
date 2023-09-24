@@ -13,9 +13,15 @@
     </div>
   </div>
   <div class="form-group row">
-    <%= f.label :description, '商品説明', class: 'col-sm-3 col-form-label' %>
+    <%= f.label :introduction, '商品説明', class: 'col-sm-3 col-form-label' %>
     <div class="col-sm-9">
-      <%= f.text_area :description, class: 'form-control' %>
+      <%= f.text_area :introduction, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :genre_id, 'ジャンル', class: 'col-sm-3 col-form-label' %>
+    <div class="col-sm-9">
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, {class: 'form-control'} %>
     </div>
   </div>
   <div class="form-group row">
@@ -29,15 +35,15 @@
   </div>
 
   <div class="form-group row">
-  <%= f.label :status, '販売ステータス', class: 'col-sm-3 col-form-label' %>
+  <%= f.label :is_sale, '販売ステータス', class: 'col-sm-3 col-form-label' %>
   <div class="col-sm-9">
     <div class="custom-control custom-radio custom-control-inline">
-      <%= f.radio_button :status, 'on_sale', checked: @item.status == 'on_sale', class: 'custom-control-input', id: 'status-on-sale' %>
-      <%= f.label :status, '販売中', class: 'custom-control-label', for: 'status-on-sale' %>
+      <%= f.radio_button :is_sale, 'on_sale', checked: @item.is_sale == 'on_sale', class: 'custom-control-input', id: 'status-on-sale' %>
+      <%= f.label :is_sale, '販売中', class: 'custom-control-label', for: 'status-on-sale' %>
     </div>
     <div class="custom-control custom-radio custom-control-inline">
-      <%= f.radio_button :status, 'off_sale', checked: @item.status == 'off_sale', class: 'custom-control-input', id: 'status-off-sale' %>
-      <%= f.label :status, '販売停止中', class: 'custom-control-label', for: 'status-off-sale' %>
+      <%= f.radio_button :is_sale, 'off_sale', checked: @item.is_sale == 'off_sale', class: 'custom-control-input', id: 'status-off-sale' %>
+      <%= f.label :is_sale, '販売停止中', class: 'custom-control-label', for: 'status-off-sale' %>
     </div>
   </div>
 </div>

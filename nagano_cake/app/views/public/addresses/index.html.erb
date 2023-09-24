@@ -1,0 +1,50 @@
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+<h1 class="text-center">配送先登録/一覧</h1>
+
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <%= form_with(model: @address, url: addresses_path, class: 'form-group') do |f| %>
+      <%= f.label :postcode, "郵便番号" %>
+      <div class="input-group mb-3">
+        <%= f.text_field :postcode %>
+      </div>
+      <%= f.label :address, "住所" %>
+      <div class="input-group mb-3">
+        <%= f.text_field :address %>
+      </div>
+        <%= f.label :name, "宛名" %>
+      <div class="input-group mb-3">
+        <%= f.text_field :name %>
+      </div>
+      <div class="input-group-append">
+        <%= f.submit "新規登録", class: 'btn btn-success' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>郵便番号</th>
+          <th>住所</th>
+          <th>宛名</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @addresses.each do |address| %>
+          <tr>
+            <td><%= address.name %></td>
+            <td><%= link_to '編集', edit_address_path(address.id), class: 'btn btn-success' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

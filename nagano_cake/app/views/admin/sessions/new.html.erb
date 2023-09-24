@@ -1,23 +1,22 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h4 class="my-5">管理者ログイン</h4>
-      <table class="table table-borderless">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <tr>
-          <td>メールアドレス</td>
-          <td><%= f.text_field :email %></td>
-        </tr>
+<h4>管理者ログイン</h4>
+  <table>
+    <%= form_with model: @admin, url: admin_session_path do |f| %>
+      <tr>
+        <td>メールアドレス</td>
+        <td><%= f.text_field :email %></td>
+      </tr>
 
-        <tr>
-          <td>パスワード</td>
-          <td><%= f.text_field :password %></td>
-        </tr>
+      <tr>
+        <td>パスワード</td>
+        <td><%= f.text_field :password %></td>
+      </tr>
 
-        <tr>
-          <td class="actions"><%= f.submit "ログイン", class:"btn btn-success" %></td>
-        </tr>
-        <% end %>
-      </table>
+      <tr>
+        <div class="actions">
+          <%= f.submit "ログイン", class:"btn btn-success" %>
+        </div>
+      </tr>
+    <% end %>
+  </table>
 
 <%= render "admin/shared/links" %>

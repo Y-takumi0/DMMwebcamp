@@ -1,9 +1,31 @@
-<div class="new-items" style="display: flex; justify-content: space-around; padding: 0 100px;">
-  <% @items.each do |item| %>
-    <div style="padding: 10px; background-color: #ffffff; flex: 1; margin: 10px;">
-      <img style="width: 100%; height: auto; object-fit: contain; margin-bottom: 10px;" src="<%= url_for(item.image) %>">
-      <h5 style="margin: 0; padding: 0;"><%= item.name %></h5>
-      <p style="margin: 0; padding: 0;">¥<%= number_with_delimiter(item.price) %></p>
+<div class="container">
+  <div class="row">
+    <h2>商品一覧</h2>
+
+      <table class="table">
+        <thead>
+          <%= link_to "+", new_admin_item_path, class:"btn btn-success" %>
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+        <% @item.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td>
+              <%= link_to admin_item_path(item.id) do %>
+              <%= item.name %>
+              <% end %>
+            </td>
+            <td><%= item.price %></td>
+           <td><%= @genres.name %></td>
+           <td><%= item.on_sale? ? '販売停止中' : '販売中' %></td>
+          </tr>
+        <% end %>
+      </table>
     </div>
-  <% end %>
-</div>
+  </div>

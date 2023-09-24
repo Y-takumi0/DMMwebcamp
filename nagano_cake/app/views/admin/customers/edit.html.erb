@@ -1,65 +1,73 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h4 class="my-5"><%= @customer.full_name %>さんの会員情報編集</h4>
-      <table class="table table-borderless">
-        <%= form_with model: [:admin, @customer] do |f| %>
-        <tr>
-          <td>会員ID</td>
-          <td><%= @customer.id %></td>
-        </tr>
-        
-        <tr>
-          <td>氏名</td>
-          <td><%= f.text_field :last_name %>　<%= f.text_field :first_name %></td>
-        </tr>
+<div class="container mt-5">
+  <h2 class="mb-4"><%= @customer.last_name %> <%= @customer.first_name %>さんの会員情報編集</h2>
 
-        <tr>
-          <td>フリガナ</td>
-          <td><%= f.text_field :last_name_kana %>　<%= f.text_field :first_name_kana %></td>
-        </tr>
+  <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch, local: true do |f| %>
+    <% render "public/shared/error_messages", resource: @customer %>
 
-        <tr>
-          <td>郵便番号</td>
-          <td><%= f.text_field :postcode %></td>
-          <td></td>
-        </tr>
+     <div class="row">
+          <label class="col-lg-3">名前</label>
+          <div class="col-lg-3">
+            <%= f.text_field :last_name,autoforcus: true, autocomplete: "last_name",  placeholder: "令和" %>
+          </div>
+          <div class="col-lg-3">
+            <%= f.text_field :first_name,autoforcus: true, autocomplete: "first_name",  placeholder: "道子" %>
+          </div>
+        </div><br>
 
-        <tr>
-          <td>住所</td>
-          <td><%= f.text_field :address %></td>
-          <td></td>
-        </tr>
+      <div class="row">
+        <label class="col-lg-3">フリガナ</label>
+        <div class="col-lg-3">
+          <%= f.text_field :last_name_kana,autoforcus: true, autocomplete: "last_name_kana",  placeholder: "レイワ" %>
+        </div>
+        <div class="col-lg-3">
+          <%= f.text_field :first_name_kana,autoforcus: true, autocomplete: "first_name_kana",  placeholder: "ミチコ" %>
+        </div>
+      </div><br>
 
-        <tr>
-          <td>電話番号</td>
-          <td><%= f.text_field :phone_number %></td>
-          <td></td>
-        </tr>
+       <div class="row">
+        <label class="col-lg-3">郵便番号（ハイフンなし）</label>
+        <div class="col-lg-3">
+          <%= f.text_field :postcode,autoforcus: true, autocomplete: "postcode",  placeholder: "0000000" %>
+        </div>
+      </div><br>
 
-        <tr>
-          <td>メールアドレス</td>
-          <td><%= f.text_field :email %></td>
-          <td></td>
-        </tr>
-        
-        <tr>
-          <td>会員ステータス</td>
-          <td>
-            <%= f.radio_button :is_deleted, :false %>
-            <%= f.label :is_deleted, "有効", { value: :false }  %>
-            
-            <%= f.radio_button :is_deleted, :true %>
-            <%= f.label :is_deleted, "退会", { value: :true } %>
-          </td>
-        </tr>
-        
-        <tr>
-          <td></td>
-          <td><%= f.submit "変更を保存", class:"btn btn-success" %></td>
-        </tr>
-        <% end %>
-      </table>
+      <div class="row">
+        <label class="col-lg-3">住所</label>
+        <div class="col-lg-3">
+          <%= f.text_field :address,autoforcus: true, autocomplete: "address",  placeholder: "東京都渋谷区代々木神園町0-0" %>
+        </div>
+      </div><br>
+
+      <div class="row">
+        <label class="col-lg-3">電話番号（ハイフンなし）</label>
+        <div class="col-lg-3">
+          <%= f.text_field :telephone,autoforcus: true, autocomplete: "telephone",  placeholder: "0000000000" %>
+        </div>
+      </div><br>
+
+     <div class="row">
+        <label class="col-lg-3">メールアドレス</label>
+        <div class="col-lg-3">
+          <%= f.text_field :email,autoforcus: true, autocomplete: "email",  placeholder: "sample@exanple.com" %>
+        </div>
+      </div><br>
+
+    <div class="row">
+      <label class="col-lg-3">会員ステータス</label>
+      <div class="col-lg-3">
+        <%= f.select :is_active, [['有効', false], ['退会済み', true]], {}, { class: 'form-control' } %>
+      </div>
+    </div><br>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-3"></div>
+          <div class="col-lg-9"><%= f.submit "変更を保存", class: "btn btn-success" %></div>
+        </div>
+      </div>
     </div>
-  </div>
+
+  <% end %>
+
 </div>

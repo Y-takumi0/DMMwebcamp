@@ -3,7 +3,7 @@
     <div class="col">
       <h4 class="my-5">ログイン</h4>
       <table class="table table-borderless">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= form_with model: @customer, url: customer_session_path(current_customer) do |f| %>
       <tr>
           <td>メールアドレス</td>
           <td><%= f.text_field :email %></td>
@@ -15,8 +15,9 @@
         </tr>
 
         <tr>
-          <td></td>
-          <td><%= f.submit "ログイン", class:"btn btn-success" %></td>
+          <td class:"actions">
+            <%= f.submit "ログイン", class:"btn btn-success" %>
+          </td>
         </tr>
         <% end %>
       </table>

@@ -38,7 +38,7 @@ Rails.application.routes.draw do
         get 'complete'
       end
     end
-     resources :addresses, except: [:new, :show]
+     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
   end
 
 end
