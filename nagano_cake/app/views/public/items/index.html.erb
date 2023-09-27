@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9" >
+      <h1 class="product-title">
+        <% if params[:genre_id] %>
+          <%= @genre.name %>
+        <% else %>
+          すべての商品
+        <% end %>
+      </h1>
+      <strong> 全<%= @items.count %>件 </strong>
+      <div class="products-list">
+        <% @items.each do |item| %>
+            <div class="products-list-item">
+              <div class="col-xs-4" >
+                <%= link_to item_path(item.id) do %>
+                <img style="width: 200px; height: 200px;" src="<%= url_for(item.image) %>">
+                <% end %>
+              </div>
+              <%= item.name %><br>
+              ¥<%= (item.price*1.1).floor.to_s(:delimited)%>(税込)
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

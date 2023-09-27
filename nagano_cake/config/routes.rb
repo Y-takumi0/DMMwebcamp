@@ -10,7 +10,7 @@ Rails.application.routes.draw do
    resources :items, only: [:index, :new, :create, :show, :edit, :update]
    resources :genres, only: [:index, :create, :edit, :update]
    resources :customers, only: [:index, :show, :edit, :update]
-   resources :orders, only: [:show, :update]
+   resources :orders, only: [:index, :show, :update]
    resources :order_details, only: [:update]
  end
 
@@ -27,14 +27,14 @@ Rails.application.routes.draw do
         patch 'withdraw'
       end
     end
-     resources :cart_items, only: [:index, :update, :destroy] do
+     resources :cart_items, only: [:index, :update, :create, :destroy] do
       collection do
         delete 'all_destroy'
       end
     end
      resources :orders, only: [:new, :create, :index, :show] do
       collection do
-        get 'confirmation'
+        post 'confirmation'
         get 'complete'
       end
     end
