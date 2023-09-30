@@ -9,7 +9,7 @@
     <p class="my-3"><strong>住所 </strong><span style="margin-left:160px;"><%= @customer.address %></span></p>
     <p class="my-3"><strong>電話番号 </strong><span style="margin-left:125px;"><%= @customer.telephone %></span></p>
     <p class="my-3"><strong>メールアドレス </strong><span style="margin-left:80px;"><%= @customer.email %></span></p>
-    <p class="my-3"><strong>会員ステータス </strong><span style="margin-left:90px; color:<%= @customer.is_active ? 'gray' : 'green' %>;"><%= @customer.is_active ? '退会済み' : '有効' %></span></p>
+    <p class="my-3"><strong>会員ステータス </strong><span style="margin-left:90px; color:<%= @customer.is_active ? 'green' : 'gray' %>;"><%= @customer.is_active ? '有効' : '退会済み' %></span></p>
 
    <%= link_to '編集する', edit_admin_customer_path(@customer), class: 'btn btn-success btn-space' %>
 

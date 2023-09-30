@@ -22,6 +22,14 @@ class Public::CustomersController < ApplicationController
     end
   end
 
+  def withdraw
+    @customer = Customer.find(current_customer.id)
+    @customer.update(is_active: false)
+    reset_session
+    flash[:notice] = "Thank you for the good rating. We hope to see you again."
+    redirect_to root_path
+  end
+
   private
 
   def customer_params

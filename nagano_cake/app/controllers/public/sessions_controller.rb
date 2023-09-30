@@ -22,8 +22,13 @@ class Public::SessionsController < Devise::SessionsController
 
   def customer_state
     @customer = Customer.find_by(email: params[:customer][:email])
-    return if !@customer
-    if @customer.valid_password?(params[:customer][:password])
+    if @customer
+      if (@customer.valid_password?(params[:customer][:password]) && (@customer.is_active? == false))
+          flash[:error] = "こちらのユーザーは既に退会済みです。"
+          redirect_to new_customer_session_path
+      else
+        flash[:error] = "必須項目を入力してください。"
+      end
     end
   end
 

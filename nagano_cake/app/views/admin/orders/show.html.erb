@@ -3,7 +3,7 @@
         <p>
           <strong>購入者</strong>
           <%= link_to admin_customer_path(@order) do %>
-            <%= @order.customer.last_name %><%= @order.customer.first_name %>
+            <%= @order.customer.last_name + @order.customer.first_name %>
           <% end %>
         </p>
       </div>
@@ -69,7 +69,7 @@
     <div>
       <p>
         <strong class="col-xs-3">商品合計</strong>
-         ¥<%= @order.payment_amount.to_s(:delimited)%>
+         ¥<%= (@order.payment_amount - @order.postage).to_s(:delimited)%>
       </p>
     </div>
     <br>
@@ -85,7 +85,7 @@
     <div>
       <p>
         <strong class="col-xs-4">請求金額合計</strong>
-        ¥<%= (@order.payment_amount + @order.postage).to_s(:delimited) %>
+        ¥<%= @order.payment_amount.to_s(:delimited) %>
       </p>
     </div>
     <br>

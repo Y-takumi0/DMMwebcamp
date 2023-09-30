@@ -20,7 +20,7 @@
               <% end %>
             </td>
             <td><%= customer.email %></td>
-            <td class="<%= customer.is_active ? 'text-gray' : 'text-green' %>"><%= customer.is_active ? '退会済み' : '有効' %></td>
+            <td class="<%= customer.is_active ? 'text-green' : 'text-greay' %>"><%= customer.is_active ? '有効' : '退会済み' %></td>
           </tr>
         <% end %>
       </table>
