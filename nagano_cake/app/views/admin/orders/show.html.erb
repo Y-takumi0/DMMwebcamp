@@ -38,35 +38,35 @@
       <!-- 注文内容の表示 -->
       <table class='col-8 order-show-table table'>
         <thead>
-      <tr>
-        <th class="active">商品名</th>
-        <th class="active">単価（税込）</th>
-        <th class="active">数量</th>
-        <th class="active">小計</th>
-        <th class="active">製作ステータス</th>
-        <th></th>
-      <tr>
-    </thead>
-    <% @order_details.each do |order_detail| %>
-    <tbody>
-      <tr>
-        <td class="col-xs-4"><%= order_detail.item.name %></td>
-        <td class="col-xs-2">¥<%= (order_detail.price*1.1).floor.to_s(:delimited) %></td>
-        <td><%= order_detail.quantity %></td>
-        <td class="col-xs-2">¥<%= ((order_detail.price * order_detail.quantity*1.1).floor).to_s(:delimited) %></td>
-        <td>
-          <%= form_with model:order_detail, url: admin_order_detail_path(order_detail), local: true do |f| %>
-            <%= f.select :status, ["製作不可", "製作待ち", "製作中", "製作完了"] %>
-        </td>
-        <td>
-          <%= f.submit "更新", class: 'btn btn-success' %>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-    <% end %>
-    </table>
-    <!-- 注文金額の表示 -->
+          <tr>
+            <th class="active">商品名</th>
+            <th class="active">単価（税込）</th>
+            <th class="active">数量</th>
+            <th class="active">小計</th>
+            <th class="active">製作ステータス</th>
+            <th></th>
+          <tr>
+        </thead>
+        <% @order_details.each do |order_detail| %>
+        <tbody>
+          <tr>
+            <td class="col-xs-4"><%= order_detail.item.name %></td>
+            <td class="col-xs-2">¥<%= (order_detail.price*1.1).floor.to_s(:delimited) %></td>
+            <td><%= order_detail.quantity %></td>
+            <td class="col-xs-2">¥<%= ((order_detail.price * order_detail.quantity*1.1).floor).to_s(:delimited) %></td>
+            <td>
+              <%= form_with model:order_detail, url: admin_order_detail_path(order_detail), local: true do |f| %>
+              <%= f.select :status, ["製作不可", "製作待ち", "製作中", "製作完了"] %>
+            </td>
+            <td>
+              <%= f.submit "更新", class: 'btn btn-success' %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+      <!-- 注文金額の表示 -->
       <div class="col-4 text-right">
         <div class="row">
           <strong class="col-sm-9">商品合計</strong>

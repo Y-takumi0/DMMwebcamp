@@ -1,11 +1,13 @@
 <div class="container">
   <div class="row">
     <h4 class="my-3 bg-light">ショッピングカート</h4>
-	  <h4 class="my-3 col-sm-9 text-right">
-          <%= link_to all_destroy_cart_items_path, method: :delete, class:"btn btn-success text-center" do %>
-            <div>カートを空にする</div>
-          <% end %>
-	 </div>
+	  <div class="my-3 col-sm-9 text-right">
+      <%= link_to all_destroy_cart_items_path, method: :delete, class:"btn btn-success text-center" do %>
+        <div>カートを空にする</div>
+      <% end %>
+	   </div>
+	</div>
+	<!--カート内容 -->
   <table class="table table-bordered">
     <thead class="bg-light">
       <tr>
@@ -42,16 +44,16 @@
       <% end %>
     <% end %>
   </table>
-
+  <!-- -->
   <div class="row my-3">
     <%= link_to "買い物を続ける", root_path, class:"btn btn-primary col-md-2 my-3" %>
     <table class="table table-bordered col-md-4 offset-md-6">
       <tr>
-      <th class="bg-light">合計金額</th>
-      <td>¥<%= @total.floor.to_s(:delimited) %></td>
-    </tr>
-  </table>
-    </div>
+        <th class="bg-light">合計金額</th>
+        <td>¥<%= @total.floor.to_s(:delimited) %></td>
+      </tr>
+    </table>
+  </div>
   <div class="text-center">
     <% if current_customer.cart_items.any? %>
 	      <% if current_customer.cart_items.any? %>

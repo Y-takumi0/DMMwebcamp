@@ -4,6 +4,7 @@
     <div class="col-md-9">
       <div class="h2 product-title">商品一覧
       <strong class="h4">(全<%= @items.count %>件)</strong></div>
+      <!-- 商品一覧の表示-->
       <div class="new-items" style="display: flex; justify-content: space-around; padding: 0 100px;">
       <% @items.each do |item| %>
       <% if item.is_sale == true %>
@@ -16,7 +17,8 @@
         </div>
       <% end %>
       <% end %>
-    </div>
+      </div>
+      <!-- -->
     </div>
   </div>
 </div>

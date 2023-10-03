@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
     <h4 class="my-3 bg-light">注文履歴一覧</h4>
-	 </div>
+	</div>
+	<!--注文履歴の表示 -->
   <table class="table table-bordered">
     <thead class="bg-light">
       <tr>
@@ -13,19 +14,20 @@
       </tr>
     </thead>
     <% @orders.each do |order| %>
-      <tbody>
-        <tr>
-          <td><%= order.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-          <td>
-            〒<%= order.postcode %><br/>
-            <%= order.address %><br/>
-            <%= order.name %>
-          </td>
-          <td><%= "#{order.payment_amount.to_s(:delimited)}" %>円</td>
-          <td><%= order.status %></td>
-          <td><%= link_to '表示する', order_path(order.id), class:"btn btn-primary" %></td>
-        </tr>
-      </tbody>
+    <tbody>
+      <tr>
+        <td><%= order.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+        <td>
+          〒<%= order.postcode %><br/>
+          <%= order.address %><br/>
+          <%= order.name %>
+        </td>
+        <td><%= "#{order.payment_amount.to_s(:delimited)}" %>円</td>
+        <td><%= order.status %></td>
+        <td><%= link_to '表示する', order_path(order.id), class:"btn btn-primary" %></td>
+      </tr>
+    </tbody>
     <% end %>
   </table>
+  <!-- -->
 </div>
