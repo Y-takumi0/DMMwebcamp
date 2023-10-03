@@ -1,18 +1,39 @@
 <div class="container mt-5">
-  <h2 class="mb-4 text-center"><%= @customer.last_name %> <%= @customer.first_name %>さんの会員詳細</h2>
+  <!-- 更新成功表示 -->
+  <p>
+    <%= flash[:notice] %>
+  </p>
+  <div class="row">
+  <h2 class="my-3 bg-light"><%= @customer.last_name %> <%= @customer.first_name %>さんの会員詳細</h2>
+  <div class="row">
+    <!-- 会員IDの表示 -->
+    <strong class="my-2 col-sm-3">会員ID</strong>
+    <span class="my-2 col-sm-9"><%= @customer.id %></span>
+    <!-- 会員名の表示 -->
+    <strong class="my-2 col-sm-3">氏名</strong>
+    <span class="my-2 col-sm-9"><%= @customer.last_name %> <%= @customer.first_name %></span>
+    <!-- 会員名(フリガナ)の表示 -->
+    <strong class="my-2 col-sm-3">フリガナ</strong>
+    <span class="my-2 col-sm-9"><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></span>
+    <!-- 会員郵便番号の表示 -->
+    <strong class="my-2 col-sm-3">郵便番号</strong>
+    <span class="my-2 col-sm-9"><%= @customer.postcode %></span>
+    <!-- 会員住所の表示 -->
+    <strong class="my-2 col-sm-3">住所</strong>
+    <span class="my-2 col-sm-9"><%= @customer.address %></span>
+    <!-- 会員電話番号の表示 -->
+    <strong class="my-2 col-sm-3">電話番号</strong>
+    <span class="my-2 col-sm-9"><%= @customer.telephone %></span>
+    <!-- 会員メールアドレスの表示 -->
+    <strong class="my-2 col-sm-3">メールアドレス </strong>
+    <span class="my-2 col-sm-9"><%= @customer.email %></span>
+    <!-- 会員ステータスの表示 -->
+    <strong class="my-2 col-sm-3">会員ステータス </strong>
+    <span class="my-2 col-sm-9 color:<%= @customer.is_active ? 'green' : 'gray' %>;"><%= @customer.is_active ? '有効' : '退会済み' %></span>
+    <!--  -->
+  </div>
 
-  <div class="pl-5">
-    <p class="my-3"><strong>会員ID </strong><span style="margin-left:150px;"><%= @customer.id %></span></p>
-    <p class="my-3"><strong>氏名 </strong><span style="margin-left:160px;"><%= @customer.last_name %> <%= @customer.first_name %></span></p>
-    <p class="my-3"><strong>フリガナ </strong><span style="margin-left:130px;"><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></span></p>
-    <p class="my-3"><strong>郵便番号 </strong><span style="margin-left:130px;"><%= @customer.postcode %></span></p>
-    <p class="my-3"><strong>住所 </strong><span style="margin-left:160px;"><%= @customer.address %></span></p>
-    <p class="my-3"><strong>電話番号 </strong><span style="margin-left:125px;"><%= @customer.telephone %></span></p>
-    <p class="my-3"><strong>メールアドレス </strong><span style="margin-left:80px;"><%= @customer.email %></span></p>
-    <p class="my-3"><strong>会員ステータス </strong><span style="margin-left:90px; color:<%= @customer.is_active ? 'green' : 'gray' %>;"><%= @customer.is_active ? '有効' : '退会済み' %></span></p>
-
+  <div class="col-sm-3 my-3">
    <%= link_to '編集する', edit_admin_customer_path(@customer), class: 'btn btn-success btn-space' %>
-
-
   </div>
 </div>

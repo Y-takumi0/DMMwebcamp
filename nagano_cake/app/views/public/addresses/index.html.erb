@@ -1,12 +1,10 @@
-<% if flash[:alert] %>
-  <div class="alert alert-danger">
-    <%= flash[:alert] %>
+<div class="container">
+  <div class="row">
+    <h4 class="my-3 bg-light">配送先登録/一覧</h4>
   </div>
-<% end %>
-<h1 class="text-center">配送先登録/一覧</h1>
 
-<div class="row justify-content-center">
-  <div class="col-md-6">
+<div class="row">
+  <div class="col-md-8">
     <table>
     <%= form_with(model: @address, url: addresses_path, class: 'form-group') do |f| %>
       <tr>
@@ -15,7 +13,7 @@
       </tr>
       <tr>
         <td>住所</td>
-        <td><%= f.text_field :address %></td>
+        <td><%= f.text_field :address, :size=>"50" %></td>
       </tr>
 
       <tr>
@@ -33,12 +31,13 @@
 
 <div class="row justify-content-center">
   <div class="col-md-8">
-    <table class="table table-striped">
+    <table class="table table-bordered">
       <thead>
-        <tr>
+        <tr class="bg-light">
           <th>郵便番号</th>
           <th>住所</th>
           <th>宛名</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -47,8 +46,8 @@
             <td><%= address.postcode %></td>
             <td><%= address.address %></td>
             <td><%= address.name %></td>
-            <td><%= link_to '編集する', edit_address_path(address.id), class: 'btn btn-success' %></td>
-            <td><%= link_to '削除する', address_path(address.id), method: :delete %></td>
+            <td><%= link_to '編集する', edit_address_path(address.id), class: 'btn btn-success' %>
+            <%= link_to '削除する', address_path(address.id), method: :delete, class: 'btn btn-danger' %></td>
           </tr>
         <% end %>
       </tbody>

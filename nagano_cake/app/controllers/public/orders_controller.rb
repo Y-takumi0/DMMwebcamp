@@ -2,6 +2,7 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = current_customer.orders.all
+    @customer = current_customer
   end
 
 
@@ -29,11 +30,13 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details.all
+    @order_details = @order.order_details
+    @customer = current_customer
   end
 
   def confirmation
     @cart_items = current_customer.cart_items
+    @customer = current_customer
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.payment_method = params[:order][:payment_method]
@@ -43,12 +46,12 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
     elsif params[:order][:address_option] == "1"
-      @addresess = Addresses.find(params[:order][:id])
+      @addresses = Address.find(params[:order][:id])
       @order.postcode = @addresses.postcode
-      @order.address = @addresess.address
-      @order.name = @addresess.name
+      @order.address = @addresses.address
+      @order.name = @addresses.name
     elsif params[:order][:address_option] == "2"
-      @addresess = current_customer.addresess.new
+      @addresess = Address.new(addresses_params)
       @addresess.addrese = params[:order][:addrese]
       @addresess.name = params[:order][:name]
       @addresess.postcode = params[:order][:postcode]
@@ -64,6 +67,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def complete
+    @customer = current_customer
   end
 
     private
@@ -73,6 +77,6 @@ class Public::OrdersController < ApplicationController
   end
 
   def addresses_params
-    params.require(:addresses).permit(:customer_id, :postcode, :address, :name)
+    params.require(:addresses).permit(:customer_id, :postcode, :address, :name, :address_id)
   end
 end

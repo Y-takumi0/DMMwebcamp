@@ -1,47 +1,45 @@
 <div class="container">
-      <div class="row">
-        <h2>商品新規登録</h2>
-        <%= form_with model: [:admin, @item], local: true, class: 'col-6 mx-auto' do |f| %>
-        <div class="form-group">
-          <%= f.label :image, '商品画像', class: 'col-sm-3 col-form-label' %>
-          <div class="col-sm-9">
-          <%= f.file_field :image, class: 'form-control' %>
-          </div>
-      </div>
-    <div class="col-xs-6">
+  <div class="row">
+    <h4 class="my-3 bg-light">商品新規登録</h4>
+  </div>
+  <div class="row">
+    <%= form_with model: [:admin, @item], local: true, class: 'mx-auto' do |f| %>
+    <!--  商品画像の追加 -->
+    <strong class="my-2 col-sm-3">商品画像</strong>
+    <div class="my-2 col-sm-9">
+      <%= f.file_field :image %>
+    </div>
+    <!--  商品名の追加 -->
+    <strong class="my-2 col-sm-3">商品名</strong>
+    <div class="my-2 col-sm-9">
+      <%= f.text_field :name, size:"56x5" %>
+    </div>
+    <!--  商品説明の追加 -->
+    <strong class="my-2 col-sm-3">商品説明</strong>
+    <div class="my-2 col-sm-9">
+      <%= f.text_area :introduction, size:"55x5" %>
+    </div>
 
-        <div class="form-group">
-          <%= f.label:商品名, class:"col-xs-2" %>
-          <%= f.text_field :name, size:"56x5" %>
-        </div>
-
-        <div class="form-group">
-          <div class="align-top">
-            <%= f.label:商品説明, class:"col-xs-2"%>
-          </div>
-          <%= f.text_area :introduction, size:"55x5" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label:ジャンル, class:"col-xs-2" %>
-          <%= f.collection_select :genre_id, Genre.all, :id,:name,{prompt: "--選択してください--"} %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label:税抜価格, class:"col-xs-2" %>
-          <%= f.text_field :price %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label:販売ステータス, class:"col-xs-3" %>
-          <%= f.select :is_active,[["販売中",true],["販売停止中",false]],include_blank: "選択して下さい" %>
-        </div>
-
-
-
-        <%= f.submit "新規登録", class: "btn btn-primary pull-right" %>
-        <% end %>
-        </div>
-      <div class="col-xs-2"></div>
+    <strong class="my-2 col-sm-3">ジャンル</strong>
+    <div class="my-2 col-sm-9">
+      <%= f.collection_select :genre_id, Genre.all, :id,:name,{prompt: "--選択してください--"} %>
+    </div>
+    <!--  商品税抜価格の追加 -->
+    <strong class="my-2 col-sm-3">税抜価格</strong>
+    <div class="my-2 col-sm-9">
+      <%= f.text_field :price %>
+    </div>
+    <!--  商品販売ステータスの追加 -->
+    <strong class="my-2 col-sm-3">販売ステータス</strong>
+    <div class="my-2 col-sm-9">
+      <%= f.radio_button :is_active, "ture" %>
+      <%= f.label :is_active, "販売中" %>
+      <%= f.radio_button :is_active, "false" %>
+      <%= f.label :is_active, "販売停止中" %>
+    </div>
+    <!--  -->
+    <div class="my-2 col-lg-3"></div>
+    <div class="my-2 col-lg-9"><%= f.submit "新規登録", class: "btn btn-success" %></div>
+    <% end %>
     </div>
 </div>

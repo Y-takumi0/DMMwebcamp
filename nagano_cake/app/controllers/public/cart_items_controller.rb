@@ -4,6 +4,7 @@ class Public::CartItemsController < ApplicationController
     @cart_items = CartItem.all
     @cart_item = CartItem.new
     @total = @cart_items.inject(0) { |sum, item| sum + item.total }
+    @customer = current_customer
   end
 
   def update

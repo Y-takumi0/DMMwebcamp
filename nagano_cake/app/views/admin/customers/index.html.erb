@@ -1,28 +1,30 @@
 <div class="container">
   <div class="row">
-    <h2>会員一覧</h2>
-
-      <table class="table">
-        <thead>
-        <tr>
-          <th>会員ID</th>
-          <th>氏名</th>
-          <th>メールアドレス</th>
-          <th>ステータス</th>
-        </tr>
-      </thead>
-        <% @customers.each do |customer| %>
-          <tr>
-            <td><%= customer.id %></td>
-            <td>
-              <%= link_to admin_customer_path(customer.id) do %>
-              <%= customer.first_name %><%= customer.last_name %>
-              <% end %>
-            </td>
-            <td><%= customer.email %></td>
-            <td class="<%= customer.is_active ? 'text-green' : 'text-greay' %>"><%= customer.is_active ? '有効' : '退会済み' %></td>
-          </tr>
-        <% end %>
-      </table>
-    </div>
+    <h4 class="my-5 bg-light">会員一覧</h4>
   </div>
+  <!-- 会員一覧の表示 -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.id %></td>
+        <td>
+          <%= link_to admin_customer_path(customer.id) do %>
+          <%= customer.first_name %>
+          <%= " " %>
+          <%= customer.last_name %>
+          <% end %>
+        </td>
+        <td><%= customer.email %></td>
+        <td class="<%= customer.is_active ? 'text-green' : 'text-greay' %>"><%= customer.is_active ? '有効' : '退会済み' %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

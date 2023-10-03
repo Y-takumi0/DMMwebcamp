@@ -1,42 +1,45 @@
 <div class="container">
   <div class="row">
-    <h2>商品編集</h2>
-    <%= form_with model: @item, url: admin_item_path(@item), method: :patch, local: true do |f| %>
-    <% render "public/shared/error_messages", resource: @item %>
-    <div class="form-group">
-          <%= f.label :image, '商品画像', class: 'col-sm-3 col-form-label' %>
-          <div class="col-sm-9">
-          <%= f.file_field :image, class: 'form-control' %>
-      <div class="col-lg-6">
-        <div class="form-group">
-          <%= f.label:商品名, class:"col-xs-2" %>
-          <%=  f.text_field :name, size:"56x5" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label:商品説明, class:"col-xs-2" %>
-          <%= f.text_area :introduction, size:"55x5" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label:ジャンル, class:"col-xs-2" %>
-          <%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: @item.genre_id} %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label:税抜価格, class:"col-xs-2" %>
-          ¥ <%= f.text_field :price %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label:販売ステータス, class:"col-xs-2" %>
-          <%= f.select :is_sale,[["販売中",true],["販売停止中",false]]%>
-        </div>
-
-        <div>
-          <%= f.submit "変更を保存" , class: "btn btn-primary"%></td>
-        </div>
-        <% end %>
-    </div>
+    <h4 class="my-3 bg-light">商品編集</h4>
   </div>
+  <div class="row">
+    <%= form_with model: @item, url: admin_item_path(@item), method: :patch, local: true, class: "mx-auto" do |f| %>
+    <% render "public/shared/error_messages", resource: @item %>
+    <!-- 商品画像の更新 -->
+    <strong class="my-2 col-sm-3">商品画像</strong>
+    <div class="my-2 col-sm-9">
+      <%= f.file_field :image %>
+    </div>
+    <!-- 商品名の更新 -->
+    <strong class="my-2 col-sm-3">商品名</strong>
+    <div class="my-2 col-sm-9">
+      <%= f.text_field :name, size:"56x5" %>
+    </div>
+    <!-- 商品説明の更新 -->
+    <strong class="my-2 col-sm-3">商品説明</strong>
+    <div class="my-2 col-sm-9">
+      <%= f.text_area :introduction, size:"55x5" %>
+    </div>
+    <!-- 商品ジャンルの更新 -->
+    <strong class="my-2 col-sm-3">ジャンル</strong>
+    <div class="my-2 col-sm-9">
+      <%= f.collection_select :genre_id, Genre.all, :id,:name,{prompt: "--選択してください--"} %>
+    </div>
+    <!-- 商品税抜価格の更新 -->
+    <strong class="my-2 col-sm-3">税抜価格</strong>
+    <div class="my-2 col-sm-9">
+      <%= f.text_field :price %>
+    </div>
+    <!-- 商品販売ステータスの更新 -->
+    <strong class="my-2 col-sm-3">販売ステータス</strong>
+    <div class="my-2 col-sm-9">
+      <%= f.radio_button :is_sale, "ture" %>
+      <%= f.label :is_sale, "販売中" %>
+      <%= f.radio_button :is_sale, "false" %>
+      <%= f.label :is_sale, "販売停止中" %>
+    </div>
+    <div class="my-2 col-lg-3"></div>
+    <div class="my-2 col-lg-9"><%= f.submit "変更内容を保存", class: "btn btn-success" %></div>
+    <% end %>
+    </div>
 </div>

@@ -1,9 +1,9 @@
 <div class="container">
+  <%= form_with model: @customer, url: customer_path, method: :patch do |f| %>
   <div class="row">
     <div class="col">
       <h4 class="my-5">会員情報編集</h4>
       <table class="table table-borderless">
-        <%= form_with model: @customer, url: customer_path, method: :patch do |f| %>
         <tr>
           <td>氏名</td>
           <td><%= f.text_field :last_name %></td>
@@ -30,7 +30,7 @@
 
         <tr>
           <td>電話番号</td>
-          <td><%= f.text_field :phone_number %></td>
+          <td><%= f.text_field :telephone %></td>
           <td></td>
         </tr>
 
@@ -42,7 +42,7 @@
 
         <tr>
           <td></td>
-          <td><%= f.submit "編集内容を保存", class:"btn btn-success" %></td>
+          <td class="action"><%= f.submit "編集内容を保存", class:"btn btn-success" %></td>
           <td><%= link_to "退会する", unsubscribe_customers_path, class:"btn btn-danger" %></td>
         </tr>
         <% end %>

@@ -6,55 +6,56 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if customer_signed_in? %>
-      <li>
-        <%= link_to 'マイページ', customer_path(current_customer.id) %>
-      </li>
-      <li>
-        <%= link_to '商品一覧', items_path %>
-      </li>
-      <li>
-        <%= link_to 'カート', cart_items_path %>
-      </li>
-      <li>
-        <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %>
-      </li>
-    <% elsif admin_signed_in? %>
-      <li>
-        <%= link_to '商品一覧', admin_items_path %>
-      </li>
-      <li>
-        <%= link_to '会員一覧', admin_customers_path %>
-      </li>
-      <li>
-        <%= link_to 'ジャンル一覧', admin_genres_path %>
-      </li>
-      <li>
-        <%= link_to '注文履歴一覧', admin_orders_path %>
-      </li>
-      <li>
-        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "About", about_path %>
-      </li>
-      <li>
-        <%= link_to '商品一覧', items_path %>
-      </li>
-      <li>
-        <%= link_to "新規登録", new_customer_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_customer_session_path %>
-      </li>
-    <% end %>
-  </header>
+    <header>
+      <nav class="navbar navbar-expand-lg ">
+        <div class="container">
+          <!-- ロゴの表示 -->
+          <button type="button" class="btn btn-outline-dark">
+          <% if admin_signed_in? %>
+            <%= link_to "Nagano Cake", admin_customers_path, class: "fas fa-birthday-cake" %>
+          <% else %>
+            <%= link_to "Nagano Cake", root_path, class: "fas fa-birthday-cake" %>
+          <% end %>
+          </button>
+
+          <!-- 顧客サインイン時に表示 -->
+          <% if customer_signed_in? %>
+            <div class="text-center">ようこそ、<%= @customer.first_name %>さん！</div>
+          <% end %>
+
+        <ul class="nav-item nav navbar-nav navbar-right">
+          <!-- 顧客サインイン時のヘッダー -->
+          <% if customer_signed_in? %>
+            <li type="button" class="btn btn-outline-dark mr-3"><%= link_to 'マイページ', customer_path(current_customer.id), class:"nav-link"%></li>
+            <li type="button" class="btn btn-outline-dark mr-3"><%= link_to '商品一覧', items_path, class:"nav-link" %></li>
+            <li type="button" class="btn btn-outline-dark mr-3"><%= link_to 'カート', cart_items_path, class:"nav-link" %> </li>
+            <li type="button" class="btn btn-outline-dark"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class:"nav-link" %></li>
+
+          <!-- アドミンサインイン時のヘッダー -->
+          <% elsif admin_signed_in? %>
+            <li type="button" class="btn btn-outline-dark mr-3"><%= link_to '商品一覧', admin_items_path, class:"nav-link" %></li>
+            <li type="button" class="btn btn-outline-dark mr-3"><%= link_to '会員一覧', admin_customers_path, class:"nav-link" %></li>
+            <li type="button" class="btn btn-outline-dark mr-3"><%= link_to 'ジャンル一覧', admin_genres_path, class:"nav-link" %></li>
+            <li type="button" class="btn btn-outline-dark mr-3"><%= link_to '注文履歴一覧', admin_orders_path, class:"nav-link" %></li>
+            <li type="button" class="btn btn-outline-dark"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"nav-link" %></li>
+
+          <!-- ログアウト時のヘッダー -->
+          <% else %>
+            <li type="button" class="btn btn-outline-dark mr-3"><%= link_to "About", about_path, class:"nav-link" %></li>
+            <li type="button" class="btn btn-outline-dark mr-3"><%= link_to '商品一覧', items_path, class:"nav-link" %></li>
+            <li type="button" class="btn btn-outline-dark mr-3"><%= link_to "新規登録", new_customer_registration_path, class:"nav-link" %></li>
+            <li type="button" class="btn btn-outline-dark"><%= link_to "ログイン", new_customer_session_path, class:"nav-link" %></li>
+          <% end %>
+        </ul>
+
+        </div>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>

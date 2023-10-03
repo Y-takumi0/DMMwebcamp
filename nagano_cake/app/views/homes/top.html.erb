@@ -1,17 +1,31 @@
-  <h1>ようこそ、ながのCAKEへ！</h1>
-  <p>このサイトは、ケーキ販売のECサイトになります。</p>
-  <p>会員でない方も商品の説明はできますが、</p>
-  <p>購入には会員登録が必要になります。</p>
-</div>
-<h2>新着商品</h2>
-<div class="new-items" style="display: flex; justify-content: space-around; padding: 0 100px;">
-  <% @items.each do |item| %>
-    <div style="padding: 10px; background-color: #ffffff; flex: 1; margin: 10px;">
-      <img style="width: 200px; height: 200px; object-fit: contain; margin-bottom: 10px;" src="<%= url_for(item.image) %>">
-      <h5 style="margin: 0; padding: 0;"><%= item.name %></h5>
-      <p style="margin: 0; padding: 0;">¥<%= number_with_delimiter(item.price) %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="top-box">
+        <div class="text-green">
+          <%= flash[:notice] %>
+        </div>
+        <p class="top-text text-center">
+          ようこそ、ながのCAKEへ！<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の説明はできますが、<br>
+          購入には会員登録が必要になります。
+        </p>
+      </div>
+    <h1>新着商品</h1>
+    <div class="new-items" style="display: flex; justify-content: space-around; padding: 0 100px;">
+      <% @items.each do |item| %>
+        <div style="padding: 10px; background-color: #ffffff; flex: 1; margin: 10px;">
+          <%= link_to item_path(item.id) do %>
+          <img style="width: 200px; height: 200px; object-fit: contain; margin-bottom: 10px;" src="<%= url_for(item.image) %>">
+          <% end %>
+          <h5 style="margin: 0; padding: 0;"><%= item.name %></h5>
+          <p style="margin: 0; padding: 0;">¥<%= number_with_delimiter(item.price) %></p>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    </div>
+  </div>
 </div>
 
 <p style="text-align: right;"><%= link_to 'すべての商品を見る＞', items_path %></p>

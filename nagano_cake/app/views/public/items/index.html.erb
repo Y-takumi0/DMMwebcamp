@@ -1,29 +1,22 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-9" >
-      <h1 class="product-title">
-        <% if params[:genre_id] %>
-          <%= @genre.name %>
-        <% else %>
-          すべての商品
-        <% end %>
-      </h1>
-      <strong> 全<%= @items.count %>件 </strong>
-      <div class="products-list">
-        <% @items.each do |item| %>
-            <div class="products-list-item">
-              <div class="col-xs-4" >
-                <%= link_to item_path(item.id) do %>
-                <img style="width: 200px; height: 200px;" src="<%= url_for(item.image) %>">
-                <% end %>
-              </div>
-              <%= item.name %><br>
-              ¥<%= (item.price*1.1).floor.to_s(:delimited)%>(税込)
-            </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-9">
+      <div class="h2 product-title">商品一覧
+      <strong class="h4">(全<%= @items.count %>件)</strong></div>
+      <div class="new-items" style="display: flex; justify-content: space-around; padding: 0 100px;">
+      <% @items.each do |item| %>
+      <% if item.is_sale == true %>
+        <div style="padding: 10px; background-color: #ffffff; flex: 1; margin: 10px;">
+          <%= link_to item_path(item) do %>
+            <img style="width: 200px; height: 200px; object-fit: contain; margin-bottom: 10px;" src="<%= url_for(item.image) %>">
           <% end %>
-      </div>
+          <div><%= item.name %></div>
+          <div>¥<%= (item.price*1.1).floor.to_s(:delimited)%>(税込)</div>
+        </div>
+      <% end %>
+      <% end %>
+    </div>
     </div>
   </div>
 </div>

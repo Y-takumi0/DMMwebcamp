@@ -16,7 +16,8 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-      redirect_to customer_path(@customer), notice: "登録情報が更新されました。"
+      redirect_to customer_path(@customer)
+      flash[:update] = "登録情報が更新されました。"
     else
       render :edit
     end
@@ -26,13 +27,13 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(current_customer.id)
     @customer.update(is_active: false)
     reset_session
-    flash[:notice] = "Thank you for the good rating. We hope to see you again."
+    flash[:notice] = "これまでのご利用誠にありがとうございました。"
     redirect_to root_path
   end
 
   private
 
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postcode, :address, :email)
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postcode, :address, :email, :telephone)
   end
 end
