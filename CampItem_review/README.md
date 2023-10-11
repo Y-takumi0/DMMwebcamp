@@ -1,24 +1,35 @@
-# README
+# キャンプアイテムレビュー
+​
+## サイト概要
+### サイトテーマ
+ 多くあるキャンプ道具について、使用感などの共有を行うレビューサイト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### テーマを選んだ理由
+ 自分自身キャンプを趣味にしたいと考えており、道具について調べている際に色々なサイトで情報はあるのですが
+ 一つの道具に対して各々の意見があり、いちいちページを切り替えて確認するのが面倒に感じておりました。
+ そのことから一つの道具に対して色々な意見を共有できるサイトがあると便利だと考えました。
+ 最終的に購入を決めるのは自分自身となりますが、参考にできる情報を集められると役立つのではないかと考え、このテーマとしました。
 
-Things you may want to cover:
+### ターゲットユーザ
+​・自分と同時にこれからキャンプをしてみたい人
 
-* Ruby version
+ ・キャンプがもっと流行って欲しいと考えている人
 
-* System dependencies
+### 主な利用シーン
+​・欲しい道具についての情報を検索したいとき
 
-* Configuration
+ ・道具の使用感について色々な意見を知りたいとき
 
-* Database creation
+ ・新作が出た際に共有したいとき
+## 設計書
+後ほど作成予定
+​
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* https://docs.google.com/spreadsheets/d/1bNSK_EKGJscYjL5njjEAUUaNFhA9h2GwcrabP0B2uGc/edit?usp=sharing
+## 実装機能リスト
+ https://docs.google.com/spreadsheets/d/1bNSK_EKGJscYjL5njjEAUUaNFhA9h2GwcrabP0B2uGc/edit?usp=sharing
